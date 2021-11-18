@@ -39,6 +39,7 @@ export const isValidAccount = (address?: string) => {
 
 export const startBot = async (ctx: CustomTelegrafContext) => {
   await ctx.reply('Hi 👋')
+  await ctx.scene.leave()
 	await ctx.scene.enter(confirmAccountSceneName)
 }
 

@@ -1,6 +1,6 @@
 import { Scenes, Markup } from 'telegraf'
 import { CustomTelegrafContext, AdminPanelSceneState } from '../types'
-import { getChatIds } from '../utils/index'
+import { getChatIds, startBot } from '../utils/index';
 import { adminsArray } from '../utils/env'
 import { menuSceneName } from './MenuScene'
 
@@ -24,6 +24,20 @@ const keyboard = Markup.keyboard([
 
 adminPanelScene.enter((ctx) => {
 	ctx.reply('🤔 Are you really an administrator?', contactRequestKeyboard)
+})
+
+adminPanelScene.command('start', async (ctx) => {
+	console.log("hi")
+	const sceneState: AdminPanelSceneState = ctx.scene.state
+
+	ctx.scene.state = {
+		...sceneState,
+		isAnnouncementMode: false,
+		announcementMessage: null,
+		photo: null,
+	}
+
+	await startBot(ctx)
 })
 
 adminPanelScene.on('contact', (ctx) => {
@@ -219,11 +233,8 @@ const parseTextToHtml = (entities: any[], text: string) => {
 			}
 		}
 
-    console.log(textPart, formattedMessage)
-
 		htmlText = htmlText.replace(textPart, formattedMessage)
 	})
-
 
 	return htmlText
 }
