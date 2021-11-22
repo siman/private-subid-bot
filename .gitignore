@@ -40,7 +40,6 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
-.env
 
 # TypeScript v1 declaration files
 typings/
@@ -60,3 +59,5 @@ build/
 
 # dotenv environment variables file
 .env
+
+sessions.json
