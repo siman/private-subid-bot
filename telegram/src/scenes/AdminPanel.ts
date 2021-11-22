@@ -22,6 +22,8 @@ const keyboard = Markup.keyboard([
 	[{ text: '📘 Mischief managed', hide: false }],
 ]).resize()
 
+// TODO: restrict to user ids.
+//  - Phone number may be way too confidential to store it on external server.
 adminPanelScene.enter((ctx) => {
 	ctx.reply('🤔 Are you really an administrator?', contactRequestKeyboard)
 })
