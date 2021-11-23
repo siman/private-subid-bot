@@ -24,7 +24,7 @@ if [[ ! $(command -v pm2) ]]; then
   exit 1
 fi
 
-cd "$ROOT" || (\
+cd "$ROOT/telegram" || (\
   echo -e "${RED}[CRITICAL] telegram bot directory wasn't found!" && exit 1\
 )
 
