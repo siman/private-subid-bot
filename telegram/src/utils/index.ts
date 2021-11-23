@@ -38,7 +38,7 @@ export const isValidAccount = (address?: string) => {
 }
 
 export const startBot = async (ctx: CustomTelegrafContext) => {
-  await ctx.reply('Hi 👋')
+  await ctx.reply('Hi 👋 Welcome to the Sub.ID Telegram bot, where you can check crowdloan contribution details.')
   await ctx.scene.leave()
 	await ctx.scene.enter(confirmAccountSceneName)
 }
