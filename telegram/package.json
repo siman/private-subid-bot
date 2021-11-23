@@ -1,0 +1,31 @@
+{
+  "name": "subid-telegram-bot",
+  "version": "0.1.0",
+  "description": "Sub Id telegram bot",
+  "author": "DappForce contributors",
+  "license": "GPL-3.0-only",
+  "private": true,
+  "engines": {
+    "node": ">= 14"
+  },
+  "scripts": {
+    "start": "node ./build/src/index.js",
+    "build": "tsc -p tsconfig.release.json"
+  },
+  "devDependencies": {
+    "@subsocial/config": "^0.4.25",
+    "@types/bn.js": "^4.11.5",
+    "@types/node": "^10.14.10",
+    "typescript": "^4.1.2"
+  },
+  "dependencies": {
+    "@subsocial/api": "0.6.4-dev.7",
+    "@subsocial/types": "0.6.4-dev.7",
+    "axios": "^0.21.2",
+    "bignumber.js": "^9.0.1",
+    "dotenv": "^8.0.0",
+    "lodash": "^4.17.21",
+    "telegraf": "4.4.2",
+    "telegraf-session-local": "^2.1.0"
+  }
+}

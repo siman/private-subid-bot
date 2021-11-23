@@ -1,0 +1,23 @@
+{
+  "name": "private-subid-bot",
+  "version": "0.1.0",
+  "description": "Telegram bots related to SubId",
+  "main": "index.js",
+  "repository": "https://github.com/siman/private-subid-bot.git",
+  "author": "DappForce contributors",
+  "license": "GPL-3.0-only",
+  "private": true,
+  "dependencies": {
+    "concurrently": "^6.2.0"
+  },
+  "workspaces": [
+    "./telegram/"
+  ],
+  "scripts": {
+    "postinstall": "concurrently \"yarn workspace subid-telegram-bot install\"",
+    "build": "concurrently \"yarn build:telegram\"",
+    "build:telegram": "yarn workspace subid-telegram-bot build",
+    "start": "concurrently \"yarn start:telegram\"",
+    "start:telegram": "yarn workspace subid-telegram-bot start"
+  }
+}
