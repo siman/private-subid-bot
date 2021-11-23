@@ -2,7 +2,6 @@ import BN from 'bignumber.js'
 
 export const BN_TEN = new BN(10)
 
-
 type BalanceWithDecimals = {
 	totalBalance: string
 	decimals: number

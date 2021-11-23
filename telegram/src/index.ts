@@ -19,30 +19,30 @@ bot.use(localSession.middleware())
 bot.use(stage.middleware())
 
 bot.start(async (ctx) => {
-	await startBot(ctx)
+  await startBot(ctx)
 })
 
 bot.command('menu', async (ctx) => {
-	const address = ctx.session.address
+  const address = ctx.session.address
 
-	address && await ctx.reply('Choose one of the buttons in the menu ⬇', menuKeyboard)
+  address && await ctx.reply('Choose one of the buttons in the menu ⬇', menuKeyboard)
 })
 
 bot.hears('Start', async (ctx) => {
-	await startBot(ctx)
+  await startBot(ctx)
 })
 
 const { enter } = Scenes.Stage
 bot.command('apanel', enter<CustomTelegrafContext>(adminPanelSceneName))
 
 bot.on('new_chat_members', async (ctx) => {
-	await ctx.telegram.leaveChat(ctx.chat.id)
+  await ctx.telegram.leaveChat(ctx.chat.id)
 })
 
 bot.launch().catch(console.error)
 
 bot.catch((err: any, ctx) =>
-console.error(`Oops, encountered an error for ${ctx.updateType}`, err)
+  console.error(`Oops, encountered an error for ${ctx.updateType}`, err)
 )
 
 resolveChainsInfo()

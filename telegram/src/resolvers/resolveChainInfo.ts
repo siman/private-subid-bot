@@ -4,9 +4,9 @@ import { getChainsInfo } from '../utils/offchainUtils'
 let chainsInfo: ChainInfo
 
 export const resolveChainsInfo = async () => {
-	if (!chainsInfo) {
+  if (!chainsInfo) {
     chainsInfo = await getChainsInfo()
-	}
+  }
 
-	return chainsInfo
+  return chainsInfo
 }
