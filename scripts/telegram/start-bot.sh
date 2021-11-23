@@ -24,9 +24,13 @@ if [[ ! $(command -v pm2) ]]; then
   exit 1
 fi
 
-[[ ! -f $ROOT/telegram/.env ]] && echo -e "${RED}.env file was not found in telegram directory!" && exit 1
+cd "$ROOT" || (\
+  echo -e "${RED}[CRITICAL] telegram bot directory wasn't found!" && exit 1\
+)
 
-cd "$ROOT" || (echo -e "${RED}[CRITICAL] telegram bot directory wasn't found!" && exit 1)
+[[ ! -f $ROOT/telegram/.env ]] && \
+  echo -e "${RED}.env file was not found in telegram directory!" && exit 1
+
 yarn install
 yarn build:telegram
 
