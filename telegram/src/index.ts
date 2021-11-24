@@ -6,7 +6,7 @@ import { menuScene } from './scenes/MenuScene'
 import { startBot } from './utils/index'
 import { resolveChainsInfo } from './resolvers/resolveChainInfo'
 import { menuKeyboard } from './utils/buttons';
-import { adminPanelSceneName, adminPanelScene } from './scenes/AdminPanel';
+import { adminPanelSceneName, adminPanelScene } from './scenes/AdminPanel'
 
 const LocalSession = require('telegraf-session-local')
 

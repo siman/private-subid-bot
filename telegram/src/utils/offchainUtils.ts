@@ -83,9 +83,9 @@ type GetCrowdloansProps = {
 }
 
 export const getCrowdloans = async ({
-                                      account,
-                                      relayChain,
-                                    }: GetCrowdloansProps) => {
+  account,
+  relayChain,
+}: GetCrowdloansProps) => {
   try {
     const res = await axios.get(
       getBackendUrl(`crowdloans/contributions/${relayChain}/${account}`)

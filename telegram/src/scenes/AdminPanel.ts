@@ -47,7 +47,7 @@ adminPanelScene.on('contact', (ctx) => {
   const address = ctx.session.address
   if (sceneState.adminConfirmed) return undefined
 
-  const isAdmin = adminsArray.includes(ctx.message.contact.phone_number)
+  const isAdmin = adminsArray.includes(ctx.from.id.toString())
 
   if (!ctx.message.reply_to_message || !isAdmin) {
     ctx.reply(`Nice try, but not today`)

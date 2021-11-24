@@ -99,7 +99,7 @@ export const sendCrowdloansContributions = async (
 		await ctx.reply(message, {
 			parse_mode: 'HTML',
 			disable_web_page_preview: true,
-			reply_markup: menuKeyboard.reply_markup
+			reply_markup: menuKeyboard.reply_markup,
 		})
 	}
 	await sendPaginationMessage(ctx, crowdloansInfoByStatus.length, end)
@@ -110,16 +110,14 @@ const sendPaginationMessage = async (
 	crowdloansInfoLength: number,
 	end: number
 ) => {
-	if (crowdloansInfoLength > DEFAULT_PAGE_SIZE) {
-		const buttons = inlinePaginationButtons(end >= crowdloansInfoLength)
-		const currentCrowdloansLength =
-			end > crowdloansInfoLength ? crowdloansInfoLength : end
+	const buttons = inlinePaginationButtons(end >= crowdloansInfoLength)
+	const currentCrowdloansLength =
+		end > crowdloansInfoLength ? crowdloansInfoLength : end
 
-		await ctx.reply(
-			`${currentCrowdloansLength}/${crowdloansInfoLength} crowdloans`,
-			buttons
-		)
-	} else {
-		await ctx.reply('No more data', menuKeyboard)
-	}
+	const paginationMsg =
+		currentCrowdloansLength > 0
+			? `${currentCrowdloansLength}/${crowdloansInfoLength} crowdloans`
+			: 'No data'
+
+	await ctx.reply(paginationMsg, buttons)
 }
