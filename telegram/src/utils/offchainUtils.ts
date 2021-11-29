@@ -2,7 +2,7 @@ import { isDef } from '@subsocial/utils'
 import axios from 'axios'
 import { supportedNetworks } from './index'
 import { backendUrl } from './env'
-import { AccountInfoItem, RelayChain, CrowdloanInfo } from './types';
+import { AccountInfoItem, RelayChain, CrowdloanInfo } from './types'
 
 export function getBackendUrl(subUrl: string): string {
   return `${backendUrl}/api/v1/${subUrl}`
@@ -35,7 +35,7 @@ export const getAccountInfo = async (account: string) => {
 
 export const getChainsInfo = async () => {
   try {
-    const res = await axios.get(getBackendUrl('/chains/properties'))
+    const res = await axios.get(getBackendUrl('chains/properties'))
     if (res.status !== 200) {
       console.warn('Failed to get chain info')
     }
@@ -161,6 +161,20 @@ export const getAssetsBalancesByAccount = async (account: string) => {
     return res.data
   } catch (err) {
     console.error('Failed to get assets balances by account', err)
+    return undefined
+  }
+}
+
+export const isNetworkConnected = async (network: string) => {
+  try {
+    const res = await axios.get(getBackendUrl(`check/${network}`))
+    if (res.status !== 200) {
+      console.warn('Failed to check network connection:', network)
+    }
+
+    return res.data
+  } catch (err) {
+    console.error('Failed to check network connection:', network)
     return undefined
   }
 }

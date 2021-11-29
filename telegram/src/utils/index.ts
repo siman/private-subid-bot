@@ -2,8 +2,9 @@ import registry from '@subsocial/types/substrate/registry'
 import { GenericAccountId } from '@polkadot/types'
 import { CustomTelegrafContext, SessionsArrayObject } from '../types'
 import { confirmAccountSceneName } from '../scenes/AuthScene'
-import { RelayChain } from './types';
+import { RelayChain } from './types'
 import { readFileSync } from 'fs'
+import { bot } from '../index'
 
 export const DEFAULT_PAGE_SIZE = 3
 
@@ -14,11 +15,13 @@ export const supportedNetworks = [
   'polkadot',
   'kusama',
   'karura',
-  'moonriver',
   'shiden',
   'khala',
   'bifrost',
   'statemine',
+  'kilt',
+  'altair',
+  'calamari',
   'centrifuge',
   // 'hydra-dx',
   'sora',
@@ -26,7 +29,8 @@ export const supportedNetworks = [
   // 'equilibrium',
   // 'darwinia',
   'chainx',
-  'subsocial'
+  'nodle',
+  'subsocial',
 ]
 
 export const isValidAccount = (address?: string) => {
@@ -43,6 +47,10 @@ export const startBot = async (ctx: CustomTelegrafContext) => {
 	await ctx.scene.enter(confirmAccountSceneName)
 }
 
+export const stopBot = async (reason: string, intervalKey?: NodeJS.Timeout) => {
+  bot.stop(reason)
+  clearInterval(intervalKey)
+}
 
 type CrowdloanInfoProps = {
 	ctx: CustomTelegrafContext
