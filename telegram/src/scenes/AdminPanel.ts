@@ -181,7 +181,6 @@ adminPanelScene.on('text', async (ctx) => {
 	if (!sceneState.adminConfirmed || !sceneState.isAnnouncementMode) return
 
 	const { entities, text } = ctx.message
-
 	const htmlText = parseTextToHtml(entities, text)
 
 	ctx.scene.state = {
@@ -239,6 +238,14 @@ const parseTextToHtml = (entities: any[], text: string) => {
 			}
 			case 'text_link': {
 				formattedMessage = `<a href='${item.url}'>${textPart}</a>`
+				break
+			}
+			case 'url': {
+				formattedMessage = `<a href='${item.url}'>${textPart}</a>`
+				break
+			}
+			default: {
+				formattedMessage = textPart
 				break
 			}
 		}
